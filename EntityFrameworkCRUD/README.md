@@ -1,52 +1,33 @@
-# Customer Management Console App
+# Entity Framework CRUD
 
-This is a simple .NET console application for managing customer data using Entity Framework Core, Serilog, and Bogus.
+Console app for managing customers with Entity Framework Core and SQL Server.
 
 ## Features
 
-- View, add, update, delete customers
-- Logs to `logs/app_log.txt` using Serilog
-- Seeds fake customer data using Bogus
-- Configurable number of seed customers in `appsettings.json`
+- CRUD operations for customers
+- SQL Server database
+- Data seeding with South African names and phone numbers
+- Logging with Serilog
+
+## Setup
+
+1. Ensure SQL Server is running
+2. Update connection string in `appsettings.json` if needed
+3. Run: `dotnet run`
+
+Database is created automatically on first run.
 
 ## Configuration
 
 Edit `appsettings.json`:
 
-```
+```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Data Source=customers.db"
+    "DefaultConnection": "Server=.;Database=CustomerDb;Trusted_Connection=True;TrustServerCertificate=True;"
   },
   "SeedSettings": {
     "GenerateCount": 20
   }
 }
 ```
-
-## Requirements
-
-- .NET 6 or higher
-- NuGet packages:
-  - Microsoft.EntityFrameworkCore
-  - Microsoft.EntityFrameworkCore.Sqlite
-  - Serilog.AspNetCore
-  - Serilog.Sinks.File
-  - Bogus
-
-## Running the App
-
-```bash
-dotnet restore
-dotnet run
-```
-
-## Author
-
-George Mpopo <gtmpopo@gmail.com>
-
----
-
-## License
-
-This project is for Clientele Assessment purposes.
