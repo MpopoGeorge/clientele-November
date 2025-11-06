@@ -1,0 +1,14 @@
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\bin\Debug\net8.0\ProducerConsumerPattern.exe
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\bin\Debug\net8.0\ProducerConsumerPattern.deps.json
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\bin\Debug\net8.0\ProducerConsumerPattern.runtimeconfig.json
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\bin\Debug\net8.0\ProducerConsumerPattern.dll
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\bin\Debug\net8.0\ProducerConsumerPattern.pdb
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\obj\Debug\net8.0\ProducerConsumerPattern.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\obj\Debug\net8.0\ProducerConsumerPattern.AssemblyInfoInputs.cache
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\obj\Debug\net8.0\ProducerConsumerPattern.AssemblyInfo.cs
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\obj\Debug\net8.0\ProducerConsumerPattern.csproj.CoreCompileInputs.cache
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\obj\Debug\net8.0\ProducerConsumerPattern.dll
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\obj\Debug\net8.0\refint\ProducerConsumerPattern.dll
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\obj\Debug\net8.0\ProducerConsumerPattern.pdb
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\obj\Debug\net8.0\ProducerConsumerPattern.genruntimeconfig.cache
+C:\Users\10028118\source\repos\clientele\ProducerConsumerPattern\ProducerConsumerPattern\obj\Debug\net8.0\ref\ProducerConsumerPattern.dll
