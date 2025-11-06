@@ -183,7 +183,52 @@ dotnet run
 
 ## Testing
 
-Unit tests can be added for each project. The architecture supports easy unit testing through interfaces and dependency injection.
+All projects have comprehensive NUnit test suites:
+
+### Test Projects
+
+1. **EntityFrameworkCRUD.Tests** - 13 tests
+   - CustomerService tests with Moq mocking
+   - CRUD operations, validation, error handling
+
+2. **ProductAPI.Tests** - 11 tests
+   - ProductService tests with Moq mocking
+   - CRUD operations, validation, error handling
+
+3. **LibraryManagementSystem.Tests** - 13 tests
+   - LibraryService tests
+   - Add, remove, search operations, validation
+
+4. **WeatherAPI.Tests** - 5 tests
+   - WeatherService tests with HttpClient mocking
+   - API calls, error handling
+
+5. **FactorialCalculator.Tests** - 7 tests
+   - Factorial calculation logic
+   - Edge cases, thread safety
+
+6. **ProducerConsumerPattern.Tests** - 5 tests
+   - ConcurrentQueue operations
+   - Thread safety tests
+
+**Total: 54 tests, all passing ✅**
+
+### Running Tests
+
+```bash
+# Run all tests
+dotnet test
+
+# Run tests for a specific project
+dotnet test EntityFrameworkCRUD.Tests
+dotnet test ProductAPI.Tests
+dotnet test LibraryManagementSystem.Tests
+dotnet test WeatherAPI.Tests
+dotnet test FactorialCalculator.Tests
+dotnet test ProducerConsumerPattern.Tests
+```
+
+The architecture supports easy unit testing through interfaces and dependency injection.
 
 ---
 
