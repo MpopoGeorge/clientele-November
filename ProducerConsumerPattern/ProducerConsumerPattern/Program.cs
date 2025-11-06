@@ -7,7 +7,6 @@ class ProducerConsumerDemo
 {
     private static ConcurrentQueue<int> numberQueue = new ConcurrentQueue<int>();
     private const int MaxQueueSize = 10;
-    private static bool isRunning = true;
     private static Random random = new Random();
     private static object randomLock = new object();
     private static ManualResetEvent stopEvent = new ManualResetEvent(false);
@@ -34,7 +33,6 @@ class ProducerConsumerDemo
         Console.WriteLine("Press any key to stop...");
         Console.ReadKey();
 
-        isRunning = false;
         stopEvent.Set();
 
         Task.WaitAll(producers);
