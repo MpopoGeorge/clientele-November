@@ -17,9 +17,6 @@ namespace ProductAPI.Presentation.Controllers
             _logger = logger;
         }
 
-        /// <summary>
-        /// Get all products
-        /// </summary>
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetAllProducts()
         {
@@ -35,9 +32,6 @@ namespace ProductAPI.Presentation.Controllers
             }
         }
 
-        /// <summary>
-        /// Get a product by ID
-        /// </summary>
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
@@ -57,9 +51,6 @@ namespace ProductAPI.Presentation.Controllers
             }
         }
 
-        /// <summary>
-        /// Create a new product
-        /// </summary>
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
         {
@@ -80,9 +71,6 @@ namespace ProductAPI.Presentation.Controllers
             }
         }
 
-        /// <summary>
-        /// Update an existing product
-        /// </summary>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product product)
         {
@@ -113,9 +101,6 @@ namespace ProductAPI.Presentation.Controllers
             }
         }
 
-        /// <summary>
-        /// Delete a product
-        /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {

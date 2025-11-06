@@ -26,7 +26,6 @@ namespace LibraryManagementSystem.Application.Services
             if (string.IsNullOrWhiteSpace(book.ISBN))
                 throw new ArgumentException("Book ISBN is required", nameof(book));
 
-            // Check if ISBN already exists
             if (_books.Any(b => b.ISBN == book.ISBN))
                 throw new InvalidOperationException($"A book with ISBN {book.ISBN} already exists");
 

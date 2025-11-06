@@ -112,9 +112,4 @@ The application handles various error scenarios:
 - API rate limits
 - Missing API key
 
-## Notes
-
-- The free tier of OpenWeatherMap API has rate limits (60 calls/minute)
-- Weather data is fetched in real-time from OpenWeatherMap
-- All API calls use HTTPS for security
 

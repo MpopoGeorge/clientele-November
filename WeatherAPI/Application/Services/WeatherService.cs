@@ -64,7 +64,6 @@ namespace WeatherAPI.Application.Services
             }
         }
 
-        // DTOs for OpenWeatherMap API response
         private class OpenWeatherResponse
         {
             public string Name { get; set; } = string.Empty;

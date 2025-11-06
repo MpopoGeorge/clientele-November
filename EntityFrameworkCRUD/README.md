@@ -40,3 +40,13 @@ Edit `appsettings.json`:
 dotnet restore
 dotnet run
 ```
+
+## Author
+
+George Mpopo <gtmpopo@gmail.com>
+
+---
+
+## License
+
+This project is for Clientele Assessment purposes.

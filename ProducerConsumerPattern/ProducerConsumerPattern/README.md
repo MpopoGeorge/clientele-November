@@ -74,5 +74,12 @@ All producers and consumers have stopped.
 Press any key to exit...
 ```
 
-## License:
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Author
+
+George Mpopo <gtmpopo@gmail.com>
+
+---
+
+## License
+
+This project is for Clientele Assessment purposes.

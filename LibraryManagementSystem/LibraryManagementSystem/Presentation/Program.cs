@@ -2,10 +2,8 @@ using LibraryManagementSystem.Application.Interfaces;
 using LibraryManagementSystem.Application.Services;
 using LibraryManagementSystem.Domain.Entities;
 
-// Setup dependency injection (simple manual DI for console app)
 ILibraryService libraryService = new LibraryService();
 
-// Add some sample books
 try
 {
     libraryService.AddBook(new Book("Artificial Intelligence and Online Engineering", 
@@ -38,7 +36,7 @@ while (running)
 
     switch (choice)
     {
-        case "1": // Add a book
+        case "1":
             try
             {
                 Console.Write("Enter title: ");
@@ -65,7 +63,7 @@ while (running)
             }
             break;
 
-        case "2": // Remove a book
+        case "2":
             Console.Write("Enter ISBN of the book to remove: ");
             string? removeIsbn = Console.ReadLine();
             if (libraryService.RemoveBook(removeIsbn ?? ""))
@@ -78,21 +76,21 @@ while (running)
             }
             break;
 
-        case "3": // Search by title
+        case "3":
             Console.Write("Enter title to search: ");
             string? searchTitle = Console.ReadLine();
             var booksByTitle = libraryService.SearchByTitle(searchTitle ?? "");
             DisplayBooks(booksByTitle);
             break;
 
-        case "4": // Search by author
+        case "4":
             Console.Write("Enter author name to search: ");
             string? searchAuthor = Console.ReadLine();
             var booksByAuthor = libraryService.SearchByAuthor(searchAuthor ?? "");
             DisplayBooks(booksByAuthor);
             break;
 
-        case "5": // Search by ISBN
+        case "5":
             Console.Write("Enter ISBN to search: ");
             string? searchIsbn = Console.ReadLine();
             var bookByISBN = libraryService.SearchByISBN(searchIsbn ?? "");

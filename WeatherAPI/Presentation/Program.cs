@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using WeatherAPI.Application.Interfaces;
 using WeatherAPI.Application.Services;
 
-// Configure services
 var services = new ServiceCollection();
 services.AddLogging(builder => builder.AddConsole());
 services.AddHttpClient();
@@ -12,9 +11,8 @@ services.AddScoped<IWeatherService>(provider =>
     var httpClientFactory = provider.GetRequiredService<IHttpClientFactory>();
     var httpClient = httpClientFactory.CreateClient();
     
-    // Get API key from environment variable or use a default (user should set their own)
     var apiKey = Environment.GetEnvironmentVariable("OPENWEATHER_API_KEY") 
-                 ?? "YOUR_API_KEY_HERE"; // User should replace this with their actual API key
+                 ?? "YOUR_API_KEY_HERE";
     
     if (apiKey == "YOUR_API_KEY_HERE")
     {

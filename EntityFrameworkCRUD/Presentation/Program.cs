@@ -12,14 +12,12 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using System.Text.RegularExpressions;
 
-// Configure Serilog
 Log.Logger = new LoggerConfiguration()
     .WriteTo.File("logs/app_log.txt", rollingInterval: Serilog.RollingInterval.Day)
     .CreateLogger();
 
 try
 {
-    // Build configuration
     var configuration = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -27,26 +25,21 @@ try
 
     var seedSettings = configuration.GetSection("SeedSettings").Get<SeedSettings>() ?? new SeedSettings();
 
-    // Setup dependency injection
     var services = new ServiceCollection();
     ConfigureServices(services, configuration);
 
     var serviceProvider = services.BuildServiceProvider();
 
-    // Get required services
     var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
     var logger = loggerFactory.CreateLogger("CustomerApp");
     logger.LogInformation("Application started");
 
-    // Setup database
     var dbContext = serviceProvider.GetRequiredService<CustomerDbContext>();
     dbContext.Database.EnsureCreated();
     SeedData(dbContext, logger, seedSettings);
 
-    // Get application service
     var customerService = serviceProvider.GetRequiredService<ICustomerService>();
 
-    // Run application
     await RunApplicationAsync(customerService, logger);
 }
 catch (Exception ex)
@@ -61,20 +54,16 @@ finally
 
 static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
 {
-    // Logging
     services.AddLogging(builder =>
     {
         builder.AddSerilog();
     });
 
-    // Database
     services.AddDbContext<CustomerDbContext>(options =>
         options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-    // Repositories
     services.AddScoped<ICustomerRepository, CustomerRepository>();
 
-    // Services
     services.AddScoped<ICustomerService, CustomerService>();
 }
 
@@ -231,25 +220,55 @@ static async Task SafeExecuteAsync(Func<Task> action, Microsoft.Extensions.Loggi
 
 static void SeedData(CustomerDbContext context, Microsoft.Extensions.Logging.ILogger logger, SeedSettings settings)
 {
-    if (!context.Customers.Any())
+    if (context.Customers.Any())
     {
-        logger.LogInformation("Seeding {Count} fake customers...", settings.GenerateCount);
-
-        var faker = new Faker<Customer>()
-            .RuleFor(c => c.Name, f => f.Name.FullName())
-            .RuleFor(c => c.Email, f => f.Internet.Email())
-            .RuleFor(c => c.PhoneNumber, f => f.Phone.PhoneNumber("0#########"));
-
-        var fakeCustomers = faker.Generate(settings.GenerateCount);
-
-        context.Customers.AddRange(fakeCustomers);
+        logger.LogInformation("Clearing existing customer data...");
+        context.Customers.RemoveRange(context.Customers);
         context.SaveChanges();
-        logger.LogInformation("Seeded {Count} customers.", fakeCustomers.Count);
+        logger.LogInformation("Existing data cleared.");
     }
-    else
-    {
-        logger.LogInformation("Database already contains customers. Skipping seed.");
-    }
+    
+    logger.LogInformation("Seeding {Count} fake customers with South African data...", settings.GenerateCount);
+
+    var firstNames = new[] { "Thabo", "Sipho", "Lungile", "Nomsa", "Bongani", "Zanele", "Mandla", "Ntombi", 
+        "Sibusiso", "Nolwazi", "Mpho", "Nthabiseng", "Kagiso", "Lerato", "Tshepo", "Puleng", 
+        "Mthunzi", "Nokuthula", "Sizwe", "Nompumelelo", "Buhle", "Nkosinathi", "Naledi", "Sanele",
+        "Thandeka", "Mzwandile", "Noluthando", "Sifiso", "Nqobile", "Lindiwe", "Mfundo", "Nombuso",
+        "Siphesihle", "Ntando", "Lwandle", "Nokwanda", "Mthokozisi", "Nolubabalo", "Sibongile", "Ntokozo" };
+    
+    var lastNames = new[] { "Mthembu", "Dlamini", "Ndlovu", "Khumalo", "Mkhize", "Ntuli", "Mabena", "Zulu",
+        "Molefe", "Nkomo", "Mabaso", "Moleko", "Nkosi", "Mahlangu", "Maseko", "Nxumalo",
+        "Mabena", "Mthembu", "Dlamini", "Ndlovu", "Khumalo", "Mkhize", "Ntuli", "Mabena",
+        "Zulu", "Molefe", "Nkomo", "Mabaso", "Moleko", "Nkosi", "Mahlangu", "Maseko",
+        "Nxumalo", "Mabena", "Mthembu", "Dlamini", "Ndlovu", "Khumalo", "Mkhize", "Ntuli" };
+
+    var phonePrefixes = new[] { "082", "083", "084", "071", "072", "073", "074", "079", "011", "021", "031", "041", "012", "016" };
+
+    var faker = new Faker<Customer>("en_ZA")
+        .RuleFor(c => c.Name, f => 
+        {
+            var firstName = f.PickRandom(firstNames);
+            var lastName = f.PickRandom(lastNames);
+            return $"{firstName} {lastName}";
+        })
+        .RuleFor(c => c.Email, f => 
+        {
+            var name = f.Name.FirstName().ToLower().Replace(" ", "");
+            var domains = new[] { "gmail.co.za", "yahoo.co.za", "outlook.co.za", "webmail.co.za", "mweb.co.za", "telkomsa.net", "vodamail.co.za" };
+            return $"{name}@{f.PickRandom(domains)}";
+        })
+        .RuleFor(c => c.PhoneNumber, f => 
+        {
+            var prefix = f.PickRandom(phonePrefixes);
+            var number = f.Random.Int(1000000, 9999999);
+            return $"{prefix} {number:### ####}";
+        });
+
+    var fakeCustomers = faker.Generate(settings.GenerateCount);
+
+    context.Customers.AddRange(fakeCustomers);
+    context.SaveChanges();
+    logger.LogInformation("Seeded {Count} customers with South African data.", fakeCustomers.Count);
 }
 
 static void DisplayCustomers(List<Customer> customers)
