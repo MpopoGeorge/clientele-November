@@ -1,18 +1,204 @@
-1. Implement a simple library management system. The system should allow adding, removing, and searching for books. Each book should have properties like Title, Author, ISBN, and Publication Year.
+# Clientele Assessments
 
-2. Write a C# program that creates multiple threads to calculate the factorial of different numbers concurrently. Ensure thread safety and proper synchronization.
+This repository contains 6 C# projects implementing various programming concepts and best practices. All projects follow Clean Architecture principles where applicable.
 
-3. Implement a producer-consumer scenario using a Queue. The producer should generate random numbers and add them to the queue, while the consumer should read and print these numbers.
+## Projects Overview
 
-4. Create a C# application that connects to a SQL database using Entity Framework. Implement CRUD operations for a simple Customer entity with properties like CustomerID, Name, Email, and PhoneNumber.
+### 1. Library Management System ✅
+**Location**: `LibraryManagementSystem/`
 
-5. Develop a RESTful API using ASP.NET Core that manages a collection of Products. The API should support operations to create, read, update, and delete products. Each product should have properties like ProductID, Name, Description, and Price.
+A simple library management system that allows adding, removing, and searching for books. Each book has properties like Title, Author, ISBN, and Publication Year.
 
-6. Write a C# console application that consumes a public REST API (e.g., OpenWeatherMap API). The application should fetch and display the current weather information for a given city.
- 
-Instructions
-1. Code Quality: Ensure your code is clean, well-documented, and follows best practices.
-2. Testing: Include unit tests for your code where applicable.
-3. Submission: Submit your code along with a README file explaining how to run the application and any assumptions you made, preferably uploaded on github or equivalent.
- 
-You need to do all of it.
+**Features**:
+- Add books to the library
+- Remove books by ISBN
+- Search books by title, author, or ISBN
+- Display all books
+- Clean Architecture implementation
+
+**Run**: `cd LibraryManagementSystem/LibraryManagementSystem && dotnet run`
+
+---
+
+### 2. Factorial Calculator ✅
+**Location**: `FactorialCalculator/`
+
+A C# program that creates multiple threads to calculate the factorial of different numbers concurrently. Ensures thread safety and proper synchronization.
+
+**Features**:
+- Multi-threaded factorial calculations
+- Thread-safe operations using locks
+- Parallel processing with Tasks
+- Parallel.ForEach implementation
+
+**Run**: `cd FactorialCalculator/FactorialCalculator && dotnet run`
+
+---
+
+### 3. Producer-Consumer Pattern ✅
+**Location**: `ProducerConsumerPattern/`
+
+Implements a producer-consumer scenario using a Queue. The producer generates random numbers and adds them to the queue, while the consumer reads and prints these numbers.
+
+**Features**:
+- Multiple producers and consumers
+- Thread-safe ConcurrentQueue
+- Graceful shutdown mechanism
+- Queue size management
+
+**Run**: `cd ProducerConsumerPattern/ProducerConsumerPattern && dotnet run`
+
+---
+
+### 4. Entity Framework CRUD ✅
+**Location**: `EntityFrameworkCRUD/`
+
+A C# application that connects to a SQL database using Entity Framework. Implements CRUD operations for a Customer entity with properties like CustomerID, Name, Email, and PhoneNumber.
+
+**Features**:
+- Full CRUD operations (Create, Read, Update, Delete)
+- Entity Framework Core with SQL Server
+- Dependency Injection
+- Logging with Serilog
+- Data seeding with Bogus
+- Clean Architecture implementation
+
+**Run**: 
+1. Update `appsettings.json` with your connection string
+2. `cd EntityFrameworkCRUD && dotnet run`
+
+---
+
+### 5. Product API (RESTful API) ✅
+**Location**: `ProductAPI/`
+
+A RESTful API built with ASP.NET Core that manages a collection of Products. The API supports operations to create, read, update, and delete products. Each product has properties like ProductID, Name, Description, and Price.
+
+**Features**:
+- RESTful API endpoints
+- Full CRUD operations
+- Swagger/OpenAPI documentation
+- Clean Architecture implementation
+- Input validation and error handling
+
+**Run**: 
+1. `cd ProductAPI && dotnet run`
+2. Navigate to `https://localhost:5001/swagger` for API documentation
+
+**API Endpoints**:
+- `GET /api/products` - Get all products
+- `GET /api/products/{id}` - Get product by ID
+- `POST /api/products` - Create new product
+- `PUT /api/products/{id}` - Update product
+- `DELETE /api/products/{id}` - Delete product
+
+---
+
+### 6. Weather API Consumer ✅
+**Location**: `WeatherAPI/`
+
+A C# console application that consumes a public REST API (OpenWeatherMap API). The application fetches and displays the current weather information for a given city.
+
+**Features**:
+- Consumes OpenWeatherMap REST API
+- Displays weather information (temperature, description, humidity, wind speed)
+- Error handling and validation
+- Clean Architecture implementation
+
+**Run**: 
+1. Get a free API key from https://openweathermap.org/api
+2. Set environment variable: `set OPENWEATHER_API_KEY=your_key` (Windows) or `export OPENWEATHER_API_KEY=your_key` (Linux/Mac)
+3. `cd WeatherAPI && dotnet run`
+
+---
+
+## Architecture
+
+All projects follow **Clean Architecture** principles where applicable:
+
+- **Domain Layer**: Core business entities
+- **Application Layer**: Business logic, interfaces, and services
+- **Infrastructure Layer**: External dependencies (databases, APIs, etc.)
+- **Presentation Layer**: User interface (Console, Web API)
+
+### Benefits:
+- Separation of concerns
+- Dependency inversion
+- Testability
+- Maintainability
+- Scalability
+
+---
+
+## Prerequisites
+
+- .NET 8.0 SDK or higher
+- SQL Server (for EntityFrameworkCRUD project)
+- OpenWeatherMap API key (for WeatherAPI project - free tier available)
+
+---
+
+## Running All Projects
+
+Each project can be run independently:
+
+```bash
+# Library Management System
+cd LibraryManagementSystem/LibraryManagementSystem
+dotnet run
+
+# Factorial Calculator
+cd FactorialCalculator/FactorialCalculator
+dotnet run
+
+# Producer-Consumer Pattern
+cd ProducerConsumerPattern/ProducerConsumerPattern
+dotnet run
+
+# Entity Framework CRUD
+cd EntityFrameworkCRUD
+dotnet run
+
+# Product API
+cd ProductAPI
+dotnet run
+
+# Weather API Consumer
+cd WeatherAPI
+dotnet run
+```
+
+---
+
+## Code Quality
+
+- ✅ Clean, well-documented code
+- ✅ Follows best practices
+- ✅ Clean Architecture implementation
+- ✅ Proper error handling
+- ✅ Input validation
+- ✅ Dependency Injection where applicable
+
+---
+
+## Testing
+
+Unit tests can be added for each project. The architecture supports easy unit testing through interfaces and dependency injection.
+
+---
+
+## Repository
+
+This code is available on GitHub: https://github.com/MpopoGeorge/clientele-November.git
+
+---
+
+## Author
+
+George Mpopo <gtmpopo@gmail.com>
+
+---
+
+## License
+
+This project is for educational purposes.
