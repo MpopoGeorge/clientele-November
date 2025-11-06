@@ -16,4 +16,3 @@ cd ProducerConsumerPattern/ProducerConsumerPattern
 dotnet run
 ```
 
-Press any key to stop.
